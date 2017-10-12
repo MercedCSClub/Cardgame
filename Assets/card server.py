@@ -76,12 +76,14 @@ def signUpUser():
 def joingame(): 
 	global serverData
 	serverid=0
+	print(json.dumps({'status':'OK','serverid':serverid}))
+
 	if(len(serverData["games"])==0):
 		serverData["games"].append({"N.players":1,"players":[request.args['id']]})
 		return json.dumps({'status':'OK','serverid':serverid})
 	else:
 		for server in serverData["games"]:	
-			if server["N.players"]>int(request.args["min players"]) and server["N.players"]>request.args["max players"]:
+			if server["N.players"]>int(request.args["min players"]) and server["N.players"]>int(request.args["max players"]):
 				server["N.players"]+=1
 				server["players"].append(request.args['id'])
 				return json.dumps({'status':'OK','serverid':serverid})
@@ -89,7 +91,7 @@ def joingame():
 		serverData["games"].append({"N.players":1,"players":[request.args['id']]})
 		serverid+=1
 		return json.dumps({'status':'OK','serverid':serverid})
-		
+	return json.dumps({'status':'OK','serverid':serverid})	
 if __name__ == "__main__":
 	app.run(host="0.0.0.0")
 			

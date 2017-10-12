@@ -12,7 +12,7 @@ public class web : MonoBehaviour
     {
         //host = "http://127.0.0.1:5000/";
         StartCoroutine(Upload());
-        //StartCoroutine(joinGame());
+        StartCoroutine(joinGame());
 
     }
     void Update()
@@ -45,7 +45,7 @@ public class web : MonoBehaviour
         //formData.Add(new MultipartFormDataSection("id=70"));
         //formData.Add(new MultipartFormFileSection("my file data", "myfile.txt"));
 
-        WWW www = new WWW(host+"joingame?min%20players=0&id=70");
+        WWW www = new WWW(host+ "joingame?min players=0&max players=5&id=70");
         yield return www;
 
         if (www.error != null)
