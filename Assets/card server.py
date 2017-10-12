@@ -36,11 +36,17 @@ class user():
 		global matches
 		self.newCards(matches,"match_p1")
 	def newCards(self,matches_,matchPack):
-		
+		kk=[]
+		newlist = list()
+		for i in matches_.keys():
+			newlist.append(i)
 		i=0
 		while(i<30):
+			i+=1
 			#self.cards
-			self.cards.append(card(self,matches_.keys()[randint(0,len(matches_.keys()))],matchPack,randint(3,40)))	
+			#__init__(self,player,name,_class,power)
+			u=card(self,newlist,matchPack,randint(3,40))
+			self.cards.append(u)	
 	def getUser(self,users,id):
 		for user in users:
 			if user.id==id:
@@ -85,5 +91,5 @@ def joingame():
 		return json.dumps({'status':'OK','serverid':serverid})
 		
 if __name__ == "__main__":
-	app.run()
+	app.run(host="0.0.0.0")
 			
